@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="/">
     <link rel="stylesheet" href="../public/styles/main.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
+    <title><%= Gal %></title>
 </head>
 <body>
-    <h2>Galeria</h2>
+    <h2><%= Gal %></h2>
+    <div class="galleryHolder">
+        <% Images.forEach(item => { %>
+            <div class="galleryItemInner">
+                <img class="gallerieImage" src="/<%= item %>">
+            </div>
+        <% }); %>
+    </div>
 </body>
 </html>

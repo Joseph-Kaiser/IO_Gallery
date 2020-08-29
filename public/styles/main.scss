@@ -26,6 +26,7 @@ p{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-left: 25px;
     
     .galleryItem{
         display: flex;
@@ -49,5 +50,25 @@ p{
             display: flex;
             color: white;
         }
+    }
+
+    .galleryItemInner{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        width: 200px;
+        background-size: cover;
+        margin:25px 25px 0px 0px;
+
+        .gallerieImage{
+            width: 175px;
+            height: 250px;
+            overflow: hidden;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+        }
+
     }
 }

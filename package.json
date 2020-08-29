@@ -9,11 +9,12 @@
     "express-router": "0.0.1",
     "expressjs": "^1.0.1",
     "fs": "0.0.1-security",
+    "nodemon": "^2.0.4",
     "sass": "^1.26.10"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",

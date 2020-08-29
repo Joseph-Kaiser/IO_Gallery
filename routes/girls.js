@@ -17,9 +17,21 @@ router.get('/:girlname', async (req, res) => {
     //console.log(nddsa)
     let thumbs = await getThumbs(nddsa, path)
     console.log("sdfsdfsdf", thumbs)
-    res.render(girl, {
+    res.render("galleries", {
         Nddsa : nddsa,
-        Thumbs : thumbs
+        Thumbs : thumbs,
+        Girl : girl
+    })
+})
+
+router.get('/:girlname/:galName', async (req,res) => {
+    let girl = req.params.girlname
+    let gal = req.params.galName
+    let path = "public/Girls/"+girl+"/"+gal
+    let images = await getImages(path)
+    res.render("gallery", {
+        Gal : gal,
+        Images : images
     })
 })
 
@@ -65,8 +77,31 @@ async function getThumbs(filess, path){
         })
     })
     await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+    var customSort = function (a, b) {
+        return (Number(a.match(/(\d+)/g)[0]) - Number((b.match(/(\d+)/g)[0])))
+    }
+    thumbs = thumbs.sort(customSort)
     console.log(thumbs)
     return thumbs;
 }
 
+async function getImages(path){
+    let Images = []
+    await fs.readdir(path, function(err, files) {
+        if (err) {
+            Images.push(null)
+        } else {
+            files.forEach(file => {
+                Images.push((path+"/"+file).toString());
+            });
+        }
+    })
+    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+    var customSort = function (a, b) {
+        return (Number(a.match(/(\d+)/g)[0]) - Number((b.match(/(\d+)/g)[0])))
+    }
+    Images = Images.sort(customSort)
+    console.log(Images)
+    return Images
+}
 module.exports = router;
