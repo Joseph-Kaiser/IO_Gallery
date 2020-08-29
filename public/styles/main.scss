@@ -1,0 +1,53 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    background-color: black;
+}
+
+h2{
+    color: white;
+}
+h3{
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+.galleryHolder{
+    display: flex;
+    width: auto;
+    height: auto;
+    align-self: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    .galleryItem{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        width: 200px;
+        background-size: cover;
+        margin:25px 25px 0px 0px;
+
+        .gallerieThumb{
+            width: 175px;
+            height: 250px;
+            overflow: hidden;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .txtGal{
+            display: flex;
+            color: white;
+        }
+    }
+}

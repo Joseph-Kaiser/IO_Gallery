@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/styles/main.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girls</title>
+</head>
+<body>
+    <h3>Meryl Sama</h3>
+    <div class="galleryHolder">
+        <% let tN = 0 %>
+        <% Nddsa.forEach(item => { %>
+            <div class="galleryItem">
+                <p class="txtGal"><%= item %></p>
+                <img class="gallerieThumb" src="/<%= Thumbs[tN] %>">
+            </div>
+        <% tN = tN + 1 %>
+        <% }); %>
+    </div>
+</body>
+</html>
