@@ -4,17 +4,35 @@
     <meta charset="UTF-8">
     <base href="/">
     <link rel="stylesheet" href="../public/styles/main.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/images/favico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/images/favico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favico/favicon-16x16.png">
+    <link rel="manifest" href="/public/images/favico/site.webmanifest">
     <title><%= Gal %></title>
 </head>
 <body>
-    <h2><%= Gal %></h2>
+    <div class="topsbar">
+        <p class="backg" onclick="window.history.go(-1);">Voltar</p>
+        <div class="minilogo" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
+        <div style="display: flex; width: 50px;"></div>
+    </div>
+    <p class="albumslogo"><%= Gal %></p>
     <div class="galleryHolderInner">
         <% Images.forEach(item => { %>
             <div class="galleryItemInner">
-                <img class="gallerieImage" src="/<%= item %>">
+                <!-- <img class="gallerieImage" src="/<%= item %>"> -->
+                <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage" src="/<%= item %>"></a>
             </div>
         <% }); %>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/utils/Draggable.min.js"></script>
 </html>
