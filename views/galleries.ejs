@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../public/styles/main.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Girls</title>
+    <title>Álbuns</title>
 </head>
 <body>
-    <h3><%= Girl %></h3>
+    <h3><%= Album %></h3>
     <div class="galleryHolder">
-        <% let tN = 0 %>
         <% Thumbs.forEach(item => { %>
             <div class="galleryItem">
-                <p class="txtGal"><%= item.split('/')[3] %></p>
-                <img class="gallerieThumb" src="/<%= item %>" onclick="javascript:window.location='/girls/<%= Girl+'/'+item %>'">
+                <div class="fadeDiv">
+                    <div class="txtGalHold" onclick="javascript:window.location='/albums/<%= item.split('/')[2] +'/'+ item.split('/')[3] %>'">
+                        <p class="txtGal"><%= item.split('/')[3] %></p>
+                    </div>
+                </div>
+                <img class="gallerieThumb" src="/<%= item %>">
+
+                
             </div>
-        <% tN = tN + 1 %>
         <% }); %>
     </div>
 </body>

@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    background-color: black;
+    /*background-color: black;*/
+    background-image: url("/public/images/backsalt.jpg");
+    overflow:auto;
+    object-fit: cover;
+    background-size: cover;
 }
 
 h2{
@@ -15,6 +22,85 @@ h3{
 
 p{
     color: white;
+}
+
+header{
+    width: 100%;
+    height: 97vh;
+
+    .logoholder{
+        width: 600px;
+        height: 450px;
+        margin: auto;
+        margin-top:20vh;
+        /*background-color: grey;*/
+
+        .logo7{
+            width: 600px;
+            height: 450px;
+            background-image: url('/public/images/logo7alt.png');
+            position: absolute;
+        }
+        .logo6{
+            width: 600px;
+            height: 450px;
+            background-image: url('/public/images/logo6alt.png');
+            position: absolute;
+        }
+        .logo5{
+            width: 600px;
+            height: 450px;
+            background-image: url('/public/images/logo5alt.png');
+            position: absolute;
+        }
+        .logo4{
+            width: 600px;
+            height: 450px;
+            background-image: url('/public/images/logo4alt.png');
+            position: absolute;
+        }
+        .logo3{
+            width: 600px;
+            height: 450px;
+            background-image: url('/public/images/logo3alt.png');
+            position: absolute;
+        }
+        .logo2{
+            width: 600px;
+            height: 450px;
+            background-image: url('/public/images/logo2alt.png');
+            position: absolute;
+        }
+        .logo1{
+            width: 600px;
+            height: 450px;
+            background-image: url('/public/images/logo1alt.png');
+            position: absolute;
+        }
+    }
+
+    .iohold{
+        height: auto;
+        width: 400px;
+        outline-color: rgba(255, 255, 255, 0);
+        outline-width: 1.5px;
+        outline-style: solid;
+        border-radius: 0px;
+        margin: auto;
+        transition: 0.3s;
+
+        &:hover{
+            outline-color: rgb(255, 255, 255);
+        }
+
+        p{
+            color: white;
+            font-family: 'Unica One', cursive;
+            font-size: 50px;
+            margin:auto;
+            text-align: center;
+        }
+    }
 }
 
 .galleryHolder{
@@ -31,44 +117,119 @@ p{
     .galleryItem{
         display: flex;
         align-items: center;
-        flex-direction: column;
-        height: 300px;
-        width: 200px;
+        height: 360px;
+        width: 240px;
         background-size: cover;
         margin:25px 25px 0px 0px;
+        $p: &;
+        transition: 0.2s;
 
+        &:hover {
+            height: 375px;
+            width: 250px;
+        }
+
+        &:hover > .fadeDiv{
+            height: 375px;
+            width: 250px;
+        }
+
+
+        .fadeDiv{
+            height: 360px;
+            width: 240px;
+            background-color: rgba(54, 54, 54, 0);
+            /*opacity: 0;*/
+            position: absolute;
+            z-index: 3;
+            transition: 0.2s;
+
+            &:hover{
+                background-color: rgba(54, 54, 54, 0.308) !important; 
+                box-shadow: inset 0px 0px 45px rgba(0,0,0,0.5) !important; 
+                position: absolute;
+                /*height: 375px;
+                width: 250px;*/
+            }
+            
+            .txtGalHold{
+                display: flex;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                justify-items: center;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                transition: 0.3s;
+                z-index: 4;
+    
+                &:hover{
+                    opacity: 1;
+                }
+    
+                .txtGal{
+                    display: flex;
+                    color: white;
+                    /*font-family: 'Noto Serif', serif;*/
+                    font-family: 'Unica One', cursive;
+                    position: absolute;
+                    text-align: justify;
+                    padding: 5px;
+                    opacity: 1;
+                    margin: auto;
+                    z-index: 3;
+                    max-width: 240px;
+                    transition: 0.3s;
+    
+                    
+                }
+            }
+        }
         .gallerieThumb{
-            width: 175px;
-            height: 250px;
+            width: inherit;
+            height: inherit;
             overflow: hidden;
             object-fit: cover;
             background-size: cover;
             background-position: center;
-        }
-
-        .txtGal{
-            display: flex;
-            color: white;
+            position: absolute;
+            z-index: 2;
         }
     }
+}
+
+.galleryHolderInner{
+    display: flex;
+    width: auto;
+    height: auto;
+    align-self: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 10px;
 
     .galleryItemInner{
         display: flex;
         align-items: center;
         flex-direction: column;
-        height: 300px;
-        width: 200px;
+        height: auto;
+        width: auto;
+        max-height: 360px;
+        min-height: 360px;
         background-size: cover;
-        margin:25px 25px 0px 0px;
+        margin:10px 10px 0px 0px;
 
         .gallerieImage{
-            width: 175px;
-            height: 250px;
+            width: auto;
+            height: auto;
+            max-height: 360px;
+            min-height: 360px;
             overflow: hidden;
             object-fit: cover;
             background-size: cover;
             background-position: center;
         }
-
     }
 }

@@ -112,5 +112,5 @@ dist
 .vscode-test
 
 
-public/Girls/
+public/Albums/
 # End of https://www.toptal.com/developers/gitignore/api/node

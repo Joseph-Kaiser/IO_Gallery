@@ -4,29 +4,33 @@ const fs = require("fs");
 const { randomBytes } = require("crypto");
 
 router.get('/', (req, res) => {
-    res.render('girls')
+    let path = "public/Albums/"
+    let albumNm = getDirectories(path)
+    res.render('albums', {
+        AlbumNm : albumNm
+    })
 })
 
 //router.post('/', (req, res) => {
 //    res.send('girls')
 //})
 
-router.get('/:girlname', async (req, res) => {
-    let girl = req.params.girlname
-    let path = "public/Girls/"+girl
+router.get('/:albumname', async (req, res) => {
+    let album = req.params.albumname
+    let path = "public/Albums/"+album
     let nddsa = getDirectories(path)
     console.log(nddsa)
     let thumbs = await getThumbs(nddsa, path)
     res.render("galleries", {
         Thumbs : thumbs,
-        Girl : girl
+        Album : album
     })
 })
 
-router.get('/:girlname/:galName', async (req,res) => {
-    let girl = req.params.girlname
+router.get('/:albumname/:galName', async (req,res) => {
+    let album = req.params.albumname
     let gal = req.params.galName
-    let path = "public/Girls/"+girl+"/"+gal
+    let path = "public/Albums/"+album+"/"+gal
     let images = await getImages(path)
     res.render("gallery", {
         Gal : gal,
