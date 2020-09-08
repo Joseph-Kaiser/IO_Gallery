@@ -11,10 +11,6 @@ router.get('/', (req, res) => {
     })
 })
 
-//router.post('/', (req, res) => {
-//    res.send('girls')
-//})
-
 router.get('/:albumname', async (req, res) => {
     let album = req.params.albumname
     let path = "public/Albums/"+album
@@ -37,24 +33,6 @@ router.get('/:albumname/:galName', async (req,res) => {
         Images : images
     })
 })
-
-//router.get('/shiro', async (req, res) => {
-//    let path = "public/Girls/Shiro"
-//    let nddsa = getDirectories(path)
-//    //console.log(nddsa)
-//    let thumbs = await getThumbs(nddsa, path)
-//    console.log("sdfsdfsdf", thumbs)
-//    res.render('shiro', {
-//        Nddsa : nddsa,
-//        Thumbs : thumbs
-//    })
-//})
-
-//router.get('/meryl', (req, res) => {
-//    let nddsa = getDirectories("D:/Pron/Pics/Meryl")
-//    console.log(nddsa)
-//    res.render('meryl', {Nddsa : nddsa})
-//})
 
 var customSort = function (a, b) {
     return (Number(a.match(/(\d+)/g)[0]) - Number((b.match(/(\d+)/g)[0])))
@@ -108,9 +86,5 @@ async function getImages(path){
     console.log(Images)
     return Images
 }
-
-
-
-
 
 module.exports = router;
