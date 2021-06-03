@@ -57,11 +57,12 @@ async function getThumbs(filess, path){
         let directoryPath = filePath
 
         fs.readdir(directoryPath, function(err, files) {
-        if (err) {
-            thumbs.push(null)
-        } else {
-            thumbs.push((directoryPath+"/"+files[randomRange(0,5)]).toString());
-        }
+            files = extractValidThumb(files);
+            if (err) {
+                thumbs.push(null)
+            } else {
+                thumbs.push((directoryPath+"/"+files[randomRange(0,5)]).toString());
+            }
         })
     })
     await new Promise((resolve, reject) => setTimeout(resolve, 1000));
@@ -85,6 +86,18 @@ async function getImages(path){
     Images = Images.sort(customSort)
     console.log(Images)
     return Images
+}
+
+function extractValidThumb(data){
+    let td = [ ]
+    data.forEach(item => {
+        let iname = item.substr(-3);
+        if (iname === 'jpg' || iname === 'ong' || iname === 'gif' || iname === 'GIF'){
+            console.log(item)
+            td.push(item)
+        } 
+    });
+    return td
 }
 
 module.exports = router;

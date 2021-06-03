@@ -23,10 +23,18 @@
     <p class="albumslogo"><%= Gal %></p>
     <div class="galleryHolderInner">
         <% Images.forEach(item => { %>
-            <div class="galleryItemInner">
-                <!-- <img class="gallerieImage" src="/<%= item %>"> -->
-                <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage" src="/<%= item %>"></a>
-            </div>
+            <% let ext = item.substr(-3) %>
+            <% if(ext==='jpg' || ext==='JPG' || ext==='gif' || ext==='GIF' || ext==='png' || ext==='PNG' || ext==='peg' || ext==='PEG') { %>
+                <div class="galleryItemInner">
+                    <!-- <img class="gallerieImage" src="/<%= item %>"> -->
+                    <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage" src="/<%= item %>"></a>
+                </div>
+            <% } %>
+            <% if(ext==='mp4' || ext==='MP4' || ext==='avi' || ext==='AVI' ) { %>
+                <div class="galleryItemInner">
+                    <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage" src="/public/images/Video-placeholder.jpg"></a>
+                </div>
+            <% } %>
         <% }); %>
     </div>
 </body>
