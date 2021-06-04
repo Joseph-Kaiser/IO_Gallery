@@ -3,11 +3,12 @@ const router = express.Router();
 const fs = require("fs");
 const { randomBytes } = require("crypto");
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     let path = "public/Albums/"
     let albumNm = getDirectories(path)
+    let preThumb = await getPreThumb(albumNm)
     res.render('albums', {
-        AlbumNm : albumNm
+        AlbumTh : preThumb
     })
 })
 
@@ -15,7 +16,7 @@ router.get('/:albumname', async (req, res) => {
     let album = req.params.albumname
     let path = "public/Albums/"+album
     let nddsa = getDirectories(path)
-    console.log(nddsa)
+    //console.log(nddsa)
     let thumbs = await getThumbs(nddsa, path)
     res.render("galleries", {
         Thumbs : thumbs,
@@ -50,6 +51,30 @@ function randomRange(min, max) {
     )
 }
 
+async function getPreThumb(albums){
+    let thumbs = []
+    let thumbsPaths = []
+    await albums.forEach(item => {
+        let galleries = getDirectories(`public/Albums/${item}`)
+        console.log(galleries)
+        thumbsPaths.push(galleries[randomRange(0, galleries.length)])
+    })
+    await thumbsPaths.forEach((item,index)=>{
+        let directoryPath = `public/Albums/${albums[index]}/${item}`
+        fs.readdir(directoryPath, function(err, files) {
+            files = extractValidThumb(files);
+            if (err) {
+                thumbs.push(null)
+            } else {
+                thumbs.push((directoryPath+"/"+files[randomRange(0,5)]).toString());
+            }
+        })
+    })
+    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+    console.log(thumbs)
+    return thumbs
+}
+
 async function getThumbs(filess, path){
     let thumbs = []
     await filess.forEach(item => {
@@ -67,7 +92,7 @@ async function getThumbs(filess, path){
     })
     await new Promise((resolve, reject) => setTimeout(resolve, 1000));
     thumbs = thumbs.sort()
-    console.log(thumbs)
+    //console.log(thumbs)
     return thumbs;
 }
 
@@ -84,7 +109,7 @@ async function getImages(path){
     })
     await new Promise((resolve, reject) => setTimeout(resolve, 1000));
     Images = Images.sort(customSort)
-    console.log(Images)
+    //console.log(Images)
     return Images
 }
 
@@ -92,8 +117,10 @@ function extractValidThumb(data){
     let td = [ ]
     data.forEach(item => {
         let iname = item.substr(-3);
-        if (iname === 'jpg' || iname === 'ong' || iname === 'gif' || iname === 'GIF'){
-            console.log(item)
+        if (iname === 'jpg' || iname === 'JPG' || iname === 'gif' 
+        || iname === 'GIF' ||iname === 'png' || iname === 'PNG' 
+        || iname === 'peg' || iname === 'PEG'){
+            //console.log(item)
             td.push(item)
         } 
     });

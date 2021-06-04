@@ -14,17 +14,22 @@
     <div class="topsbar">
         <div class="minilogo" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
     </div>
-    <p class="albumslogo"> - Álbuns - </p>
+    <p class="albumslogo"> - Your Albums - </p>
     <header style="height: 80vh;">
-        <div class="albumholder" style="">
-            <div style="padding: 25px 25px 1px 25px;">
-                <% AlbumNm.forEach(item => { %>
-                    <div class="albumhold" style="margin-bottom: 25px;">
-                        <p onclick="javascript:window.location='albums/<%= item %>'"><%= item %></p>
-                    </div>
-                <% }); %>
+        <div class="albumholder">
+            <% AlbumTh.forEach((item,index) => { %>
+                <div class="albumhold" onclick="redir('albums/<%= item.split('/')[2] %>')" style="margin-bottom: 25px; background-image: url('<%= item %>');">
+                    <div class="test"></div>
+                    <p><%= item.split('/')[2] %></p>
             </div>
+            <% }); %>
         </div>
     </header>
+    <script>
+        function redir(page)
+        {
+            window.location=page
+        }
+    </script>
 </body>
 </html>

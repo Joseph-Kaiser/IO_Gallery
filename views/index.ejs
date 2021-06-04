@@ -19,13 +19,19 @@
             <div class="logo4"></div>
             <div class="logo5"></div>
             <div class="logo6"></div>
-            <div class="logo7"></div>
+            <div class="logo7" onclick="redir()"></div>
         </div>
-        <div class="iohold" >
-            <p type="button" onclick="javascript:window.location='/albums'">IO_Gallery</p>
+        <div class="iohold">
+            <p type="button">IO_Gallery</p>
         </div>
         
     </header>
+    <script>
+        function redir()
+        {
+            window.location='/albums'
+        }
+    </script>
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
