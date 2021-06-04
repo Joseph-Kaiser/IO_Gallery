@@ -1,17 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Unica+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap");
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
   /*background-color: black;*/
-  background-image: url("/public/images/backsalt.jpg");
+  background-image: url("/public/images/backs3.jpg");
   overflow: auto;
   object-fit: cover;
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #292929;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #333333;
+  border: 3px solid #292929;
 }
 
 h2 {
@@ -27,7 +44,6 @@ p {
 }
 
 header {
-  width: 100%;
   height: 100vh;
 }
 header .logoholder {
@@ -103,28 +119,55 @@ header .iohold p {
   }
 }
 header .albumholder {
-  width: auto;
   height: auto;
-  border-radius: 0px;
+  max-width: 1650px;
+  background-color: black;
   margin: auto;
   display: flex;
-  align-self: center;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  margin-top: 75px;
+  padding: 5px 5px 5px 5px;
+}
+@media screen and (max-width: 1920px) {
+  header .albumholder {
+    width: 1230px;
+  }
+}
+@media screen and (max-width: 1260px) {
+  header .albumholder {
+    width: 820px;
+  }
+}
+@media screen and (max-width: 900px) {
+  header .albumholder {
+    width: 620px;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .albumholder {
+    width: 310px;
+  }
 }
 header .albumholder .albumhold {
   display: flex;
   width: 400px;
-  height: 300px;
+  height: 400px;
   background-size: cover;
   transition: 0.3s;
   justify-content: center;
   align-items: flex-end;
-  margin: 0px 10px 10px 10px;
+  margin: 5px 5px 5px 5px;
+  transition: 0.3s;
 }
-header .albumholder .albumhold:hover p {
+@media screen and (max-width: 900px) {
+  header .albumholder .albumhold {
+    width: 300px;
+    height: 300px;
+  }
+}
+header .albumholder .albumhold:hover .albumName {
   opacity: 0.2;
 }
 header .albumholder .albumhold:hover .test {
@@ -132,11 +175,47 @@ header .albumholder .albumhold:hover .test {
 }
 header .albumholder .albumhold .test {
   width: 400px;
-  height: 300px;
+  height: 400px;
   transition: 0.4s;
-  background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0.212));
+  background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+  display: flex;
+  justify-content: right;
 }
-header .albumholder .albumhold p {
+@media screen and (max-width: 900px) {
+  header .albumholder .albumhold .test {
+    width: 300px;
+    height: 300px;
+  }
+}
+header .albumholder .albumhold .countHold {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  position: absolute;
+  border: rgba(255, 255, 255, 0.4);
+  border-style: solid;
+  border-width: 0.5px;
+  background-color: rgba(0, 0, 0, 0.219);
+  opacity: 0.9;
+  margin: 0px 0px 360px 340px;
+}
+@media screen and (max-width: 900px) {
+  header .albumholder .albumhold .countHold {
+    margin: 0px 0px 260px 240px;
+  }
+}
+header .albumholder .albumhold .countHold img {
+  height: 20px;
+  width: 20px;
+  margin: 5px 5px 0px 5px;
+}
+header .albumholder .albumhold .countHold .galleryCount {
+  color: white;
+  font-family: "Unica One", cursive;
+  font-size: 20px;
+  margin: 3px 5px 3px 0px;
+}
+header .albumholder .albumhold .albumName {
   color: white;
   font-family: "Unica One", cursive;
   font-size: 35px;
@@ -152,7 +231,7 @@ header .albumholder .albumhold p {
   display: flex;
   width: 100%;
   height: 50px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .topsbar .backg {
   display: flex;
@@ -168,7 +247,7 @@ header .albumholder .albumhold p {
   background-image: url("/public/images/minilogo.png");
   background-size: cover;
   margin: auto;
-  opacity: 0.25;
+  opacity: 0.35;
   transition: 0.2s;
 }
 .topsbar .minilogo:hover {
@@ -182,10 +261,12 @@ header .albumholder .albumhold p {
 
 .albumslogo {
   color: white;
-  font-family: "Unica One", cursive;
+  font-family: "Chakra Petch", sans-serif;
   margin: auto;
   font-size: 50px;
-  margin: 25px 0px 25px 0px;
+  margin: 5px 0px 5px 0px;
+  width: 100%;
+  text-align: center;
 }
 
 .galleryHolder {
@@ -197,34 +278,67 @@ header .albumholder .albumhold p {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-left: 25px;
+  margin-top: 75px;
+  background-color: black;
+  padding: 5px 5px 5px 5px;
+}
+@media screen and (max-width: 1920px) {
+  .galleryHolder {
+    width: 1230px;
+  }
+}
+@media screen and (max-width: 1260px) {
+  .galleryHolder {
+    width: 820px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .galleryHolder {
+    width: 620px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .galleryHolder {
+    width: 310px;
+  }
 }
 .galleryHolder .galleryItem {
   display: flex;
   align-items: center;
-  height: 360px;
-  width: 240px;
+  height: 500px;
+  width: 340px;
   background-size: cover;
-  margin: 25px 25px 0px 0px;
+  margin: 5px 5px 5px 5px;
   transition: 0.5s;
+  /*&:hover {
+      transform:scale(1.02,1.02);
+      -webkit-transform:scale(1.02,1.02);
+      -moz-transform:scale(1.02,1.02);
+  }*/
 }
-.galleryHolder .galleryItem:hover {
-  transform: scale(1.05, 1.05);
-  -webkit-transform: scale(1.05, 1.05);
-  -moz-transform: scale(1.05, 1.05);
+@media screen and (max-width: 900px) {
+  .galleryHolder .galleryItem {
+    height: 320px;
+    width: 240px;
+  }
 }
 .galleryHolder .galleryItem .fadeDiv {
-  height: 360px;
-  width: 240px;
-  background-color: rgba(54, 54, 54, 0);
+  height: 500px;
+  width: 340px;
+  background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
   /*opacity: 0;*/
   position: absolute;
   z-index: 3;
   transition: 0.2s;
 }
+@media screen and (max-width: 900px) {
+  .galleryHolder .galleryItem .fadeDiv {
+    height: 320px;
+    width: 240px;
+  }
+}
 .galleryHolder .galleryItem .fadeDiv:hover {
-  background-color: rgba(54, 54, 54, 0.308) !important;
-  box-shadow: inset 0px 0px 45px rgba(0, 0, 0, 0.5) !important;
+  opacity: 0.1;
   position: absolute;
   /*height: 375px;
   width: 250px;*/
@@ -237,18 +351,18 @@ header .albumholder .albumhold p {
   justify-items: center;
   justify-content: center;
   align-items: center;
-  opacity: 0;
+  opacity: 0.9;
   transition: 0.3s;
   z-index: 4;
 }
 .galleryHolder .galleryItem .fadeDiv .txtGalHold:hover {
-  opacity: 1;
+  opacity: 0.8;
 }
 .galleryHolder .galleryItem .fadeDiv .txtGalHold .txtGal {
   display: flex;
   color: white;
   /*font-family: 'Noto Serif', serif;*/
-  font-family: "Unica One", cursive;
+  font-family: "Chakra Petch", sans-serif;
   position: absolute;
   text-align: justify;
   padding: 5px;
@@ -257,6 +371,14 @@ header .albumholder .albumhold p {
   z-index: 3;
   max-width: 240px;
   transition: 0.3s;
+  font-size: 30px;
+  margin-bottom: -350px;
+}
+@media screen and (max-width: 900px) {
+  .galleryHolder .galleryItem .fadeDiv .txtGalHold .txtGal {
+    font-size: 22px;
+    margin-bottom: -200px;
+  }
 }
 .galleryHolder .galleryItem .gallerieThumb {
   width: inherit;
@@ -278,7 +400,8 @@ header .albumholder .albumhold p {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-left: 10px;
 }
 .galleryHolderInner .galleryItemInner {
   display: flex;

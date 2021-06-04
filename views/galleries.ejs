@@ -12,12 +12,10 @@
 </head>
 <body>
     <div class="topsbar">
-        <p class="backg" onclick="window.history.go(-1);">Voltar</p>
-        <div class="minilogo" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
-        <div style="display: flex; width: 50px;"></div>
+        <div class="minilogo" onclick="redirBack()" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
     </div>
-    <p class="albumslogo">Galerias - <%= Album %></p>
     <div class="galleryHolder">
+        <p class="albumslogo"><%= Album %></p>
         <% Thumbs.forEach(item => { %>
             <div class="galleryItem">
                 <div class="fadeDiv">
@@ -30,6 +28,13 @@
                 
             </div>
         <% }); %>
+        <div style="height:500px; width: 100%;"></div>
     </div>
+    <script>
+        function redirBack()
+        {
+            window.history.go(-1);
+        }
+    </script>
 </body>
 </html>

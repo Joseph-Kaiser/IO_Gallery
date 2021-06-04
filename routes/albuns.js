@@ -54,10 +54,11 @@ function randomRange(min, max) {
 async function getPreThumb(albums){
     let thumbs = []
     let thumbsPaths = []
-    await albums.forEach(item => {
+    let gall = []
+    await albums.forEach((item,index) => {
         let galleries = getDirectories(`public/Albums/${item}`)
-        console.log(galleries)
         thumbsPaths.push(galleries[randomRange(0, galleries.length)])
+        gall.push(galleries.length)
     })
     await thumbsPaths.forEach((item,index)=>{
         let directoryPath = `public/Albums/${albums[index]}/${item}`
@@ -70,9 +71,14 @@ async function getPreThumb(albums){
             }
         })
     })
+    thumbs.sort((a, b) => a.firstname.localeCompare(b.firstname))
     await new Promise((resolve, reject) => setTimeout(resolve, 1000));
     console.log(thumbs)
-    return thumbs
+    
+    return item = {
+        'Thumbs' : thumbs,
+        'GallCount' : gall
+    }
 }
 
 async function getThumbs(filess, path){

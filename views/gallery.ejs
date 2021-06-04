@@ -16,12 +16,10 @@
 </head>
 <body>
     <div class="topsbar">
-        <p class="backg" onclick="window.history.go(-1);">Voltar</p>
-        <div class="minilogo" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
-        <div style="display: flex; width: 50px;"></div>
+        <div class="minilogo" onclick="redir()" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
     </div>
-    <p class="albumslogo"><%= Gal %></p>
     <div class="galleryHolderInner">
+        <p class="albumslogo"><%= Gal %></p>
         <% Images.forEach(item => { %>
             <% let ext = item.substr(-3) %>
             <% if(ext==='jpg' || ext==='JPG' || ext==='gif' || ext==='GIF' || ext==='png' || ext==='PNG' || ext==='peg' || ext==='PEG') { %>
@@ -37,6 +35,12 @@
             <% } %>
         <% }); %>
     </div>
+    <script>
+        function redir()
+        {
+            window.history.go(-1);
+        }
+    </script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>

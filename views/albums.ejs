@@ -12,23 +12,32 @@
 </head>
 <body>
     <div class="topsbar">
-        <div class="minilogo" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
+        <div class="minilogo" onclick="redirBack()" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
     </div>
-    <p class="albumslogo"> - Your Albums - </p>
     <header style="height: 80vh;">
         <div class="albumholder">
-            <% AlbumTh.forEach((item,index) => { %>
-                <div class="albumhold" onclick="redir('albums/<%= item.split('/')[2] %>')" style="margin-bottom: 25px; background-image: url('<%= item %>');">
+            <p class="albumslogo">  ALBUMS  </p>
+            <% AlbumTh.Thumbs.forEach((item,index) => { %>
+                <div class="albumhold" onclick="redir('albums/<%= item.split('/')[2] %>')" style="background-image: url('<%= item %>');">
                     <div class="test"></div>
-                    <p><%= item.split('/')[2] %></p>
+                    <div class="countHold">
+                        <img src="../public/images/gallery.png" alt="">
+                        <p class="galleryCount"><%= AlbumTh.GallCount[index] %></p>
+                    </div>
+                    <p class="albumName"><%= item.split('/')[2] %></p>
             </div>
             <% }); %>
+            <div style="height:500px; width: 100%;"></div>
         </div>
     </header>
     <script>
         function redir(page)
         {
             window.location=page
+        }
+        function redirBack()
+        {
+            window.history.go(-1);
         }
     </script>
 </body>
