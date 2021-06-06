@@ -34,7 +34,7 @@
         <p class="albumslogo"><%= Gal %></p>
         <% Images.forEach(item => { %>
             <% let ext = item.substr(-4).toLowerCase() %>
-            <% if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg') { %>
+            <% if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg' || ext=='jfif') { %>
                 <div id="<%= item %>" class="galleryItemInner galleryItem">
                     <!-- <img class="gallerieImage" src="/<%= item %>"> -->
                     <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage gImage" src="/<%= item %>"></a>

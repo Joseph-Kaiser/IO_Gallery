@@ -54,7 +54,7 @@ function searchGeneral(wr){
 }
 
 function isImg(ext){
-    if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg'){return true}
+    if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg' || ext==='jfif'){return true}
     else return false
 }
 

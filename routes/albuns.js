@@ -154,7 +154,7 @@ function extractValidThumb(data){
     data.forEach(item => {
         let iname = item.substr(-4).toLowerCase();
         if (iname === '.jpg' || iname === '.gif' 
-        || iname === '.png' || iname === 'jpeg'){
+        || iname === '.png' || iname === 'jpeg' || iname === 'jfif'){
             td.push(item)
         } 
     });
