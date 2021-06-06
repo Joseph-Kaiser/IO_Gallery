@@ -31,26 +31,36 @@ function changeGallerySize(op){
             cols2[i].classList.add("gallerieImage");
         }
     }
-} 
+}
 
-function searchGalerie(){
+function searchGeneral(wr){
     let q = document.getElementById('searchQ').value.toLowerCase();
-    let elems = document.getElementsByClassName('galleryItem')
+    let elems = document.getElementsByClassName(wr)
     for (let index = 0; index < elems.length; index++) {
         const item = elems[index];
         if(q.length <= 1){
-            item.setAttribute('style', 'display: block')
+            item.classList.remove('hidden')
         }else if(q.length > 30){
             return null;
         }else{
             if(item.id.toLowerCase().includes(q)){
                 console.log(item.id)
-                item.setAttribute('style', 'display: block')
+                item.classList.remove('hidden')
             }else{
-                item.setAttribute('style', 'display: none')
+                item.classList.add('hidden')
             }
         }
     }
+}
+
+function isImg(ext){
+    if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg'){return true}
+    else return false
+}
+
+function isVid(ext){
+    if(ext==='.mp4' || ext==='.webm'){return true}
+    else return false
 }
 
 function searchGallery(media){
@@ -61,7 +71,7 @@ function searchGallery(media){
         const ext = id.substr(-4)
         switch (media) {
             case 'video':
-                if(ext==='.mp4' || ext==='.webm'){
+                if(isVid(ext)){
                     if(item.classList.contains('hidden')){
                         item.classList.remove('hidden')
                     }else{
@@ -70,7 +80,7 @@ function searchGallery(media){
                 }
                 break;
             case 'image':
-                if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg'){
+                if(isImg(ext)){
                     if(item.classList.contains('hidden')){
                         item.classList.remove('hidden')
                     }else{
@@ -79,7 +89,7 @@ function searchGallery(media){
                 }
                 break;
             case 'other':
-                if(ext !=='.mp4' && ext !=='.webm' && ext!=='.jpg' && ext!=='.gif' && ext!=='.png' && ext!=='jpeg'){
+                if(!isVid(ext) && !isImg(ext)){
                     if(item.classList.contains('hidden')){
                         item.classList.remove('hidden')
                     }else{
@@ -104,7 +114,6 @@ function btnToggle(id){
 }
 
 function btnSizeToggle(id){
-    let btn = document.getElementById(id)
     if(id=="btnPlus" || "btnMinus"){
         let btnP = document.getElementById('btnPlus')
         let btnM = document.getElementById('btnMinus')

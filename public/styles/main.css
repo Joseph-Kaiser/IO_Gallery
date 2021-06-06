@@ -1,13 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Unica+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap");
+@font-face {
+  font-family: "RainyHearts";
+  src: url("../fonts/rainyhearts.woff") format("woff");
+}
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
   /*background-color: black;*/
-  background-image: url("/public/images/backs3.jpg");
+  background-image: url("/public/images/backs2.jpg");
   overflow: auto;
   object-fit: cover;
   background-size: cover;
@@ -31,10 +34,17 @@ body {
   border: 3px solid #292929;
 }
 
+.sizeControll .size, .gHold .searchControll .size, .sizeControll .text, .gHold .searchControll .text, h2, h3, p, a {
+  text-shadow: 1px 2px #00dee6e8, 2px 1px #df00d3e1;
+}
+
+.sizeControll .active, .gHold .searchControll .active, .topsbar .topBtns .topAct, .topsbarLow .topBtns .topAct {
+  text-shadow: 0.5px 1px #00dee6e8, 1px 0.5px #df00d3e1;
+}
+
 h2, h3, p, a {
   color: white;
   font-family: "Chakra Petch", sans-serif;
-  text-shadow: 1px 2px #00dee6e8, 2px 1px #df00d3e1;
   cursor: default;
 }
 
@@ -193,7 +203,62 @@ header .iohold p {
 header .iohold p:hover {
   cursor: default;
 }
-header .albumholder {
+
+.albumContainer {
+  display: flex;
+  flex-direction: column;
+}
+.albumContainer .searchControllA {
+  width: 355px;
+  height: 37.5px;
+  margin-top: 85px;
+  margin-left: 25px;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0px;
+  background-color: black;
+  align-self: flex-end;
+  width: auto;
+  padding: 0px 5px 0px 5px;
+  transition: 0.5s;
+}
+@media screen and (max-width: 900px) {
+  .albumContainer .searchControllA {
+    margin-left: 5px;
+  }
+}
+.albumContainer .searchControllA:hover input {
+  max-width: 300px;
+}
+@media screen and (max-width: 450px) {
+  .albumContainer .searchControllA:hover input {
+    max-width: 125px;
+  }
+}
+.albumContainer .searchControllA img {
+  margin-right: 5px;
+}
+.albumContainer .searchControllA input {
+  max-width: 0px;
+  height: 35px;
+  background-color: black;
+  color: white;
+  border-style: none;
+  font-size: 18px;
+  transition: 0.5s;
+}
+.albumContainer .searchControllA input:focus {
+  outline: none;
+  max-width: 300px;
+}
+@media screen and (max-width: 450px) {
+  .albumContainer .searchControllA input:focus {
+    max-width: 125px;
+  }
+}
+.albumContainer .albumholder {
   height: auto;
   min-height: 100vh;
   width: 1640px;
@@ -203,30 +268,30 @@ header .albumholder {
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-top: 125px;
+  margin-top: 0px;
   padding: 5px 5px 5px 5px;
 }
 @media screen and (max-width: 1920px) {
-  header .albumholder {
+  .albumContainer .albumholder {
     width: 1230px;
   }
 }
 @media screen and (max-width: 1260px) {
-  header .albumholder {
+  .albumContainer .albumholder {
     width: 820px;
   }
 }
 @media screen and (max-width: 900px) {
-  header .albumholder {
+  .albumContainer .albumholder {
     width: 620px;
   }
 }
 @media screen and (max-width: 450px) {
-  header .albumholder {
+  .albumContainer .albumholder {
     width: 310px;
   }
 }
-header .albumholder .albumhold {
+.albumContainer .albumholder .albumhold {
   display: flex;
   width: 400px;
   height: 400px;
@@ -237,32 +302,34 @@ header .albumholder .albumhold {
   margin: 5px 5px 5px 5px;
 }
 @media screen and (max-width: 900px) {
-  header .albumholder .albumhold {
+  .albumContainer .albumholder .albumhold {
     width: 300px;
     height: 300px;
   }
 }
-header .albumholder .albumhold:hover .albumName {
+.albumContainer .albumholder .albumhold:hover .albumName {
   opacity: 0.2;
 }
-header .albumholder .albumhold:hover .test {
+.albumContainer .albumholder .albumhold:hover .fade {
   opacity: 0.1;
 }
-header .albumholder .albumhold .test {
+.albumContainer .albumholder .albumhold .fade {
   width: 400px;
   height: 400px;
   transition: 0.9s;
   background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
   display: flex;
   justify-content: right;
+  position: absolute;
+  z-index: 2;
 }
 @media screen and (max-width: 900px) {
-  header .albumholder .albumhold .test {
+  .albumContainer .albumholder .albumhold .fade {
     width: 300px;
     height: 300px;
   }
 }
-header .albumholder .albumhold .countHold {
+.albumContainer .albumholder .albumhold .countHold {
   display: flex;
   flex-direction: row;
   width: auto;
@@ -273,25 +340,26 @@ header .albumholder .albumhold .countHold {
   background-color: rgba(0, 0, 0, 0.6);
   opacity: 0.9;
   margin: 0px 0px 360px 340px;
+  z-index: 1;
 }
 @media screen and (max-width: 900px) {
-  header .albumholder .albumhold .countHold {
+  .albumContainer .albumholder .albumhold .countHold {
     margin: 0px 0px 260px 240px;
   }
 }
-header .albumholder .albumhold .countHold img {
+.albumContainer .albumholder .albumhold .countHold img {
   height: 20px;
   width: 20px;
   margin: 5px 5px 0px 5px;
 }
-header .albumholder .albumhold .countHold .galleryCount {
+.albumContainer .albumholder .albumhold .countHold .galleryCount {
   color: white;
   font-size: 20px;
   margin: 3px 5px 3px 0px;
   text-shadow: none;
   min-width: 10px;
 }
-header .albumholder .albumhold .albumName {
+.albumContainer .albumholder .albumhold .albumName {
   color: white;
   font-size: 35px;
   margin: auto;
@@ -300,11 +368,15 @@ header .albumholder .albumhold .albumName {
   margin-bottom: 15px;
   transition: 0.3s;
   opacity: 0.8;
+  z-index: 3;
 }
 @media screen and (max-width: 900px) {
-  header .albumholder .albumhold .albumName {
+  .albumContainer .albumholder .albumhold .albumName {
     font-size: 25px;
   }
+}
+.albumContainer .albumholder .hidden {
+  display: none;
 }
 
 .foot {
@@ -324,42 +396,69 @@ header .albumholder .albumhold .albumName {
 .topsbar, .topsbarLow {
   position: fixed;
   display: flex;
+  align-self: center;
+  justify-content: center;
   width: 100%;
   height: 50px;
   background-color: black;
   z-index: 1000;
   transition: 0.5s;
 }
-.topsbar .backg, .topsbarLow .backg {
+.topsbar .topBtns, .topsbarLow .topBtns {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+.topsbar .topBtns .topAct, .topsbarLow .topBtns .topAct {
+  width: 75px;
+  min-width: 75px;
+  opacity: 0;
+  transition: 0.3s;
+}
+.topsbar .topBtns .topAct:hover, .topsbarLow .topBtns .topAct:hover {
+  cursor: pointer;
+  opacity: 0.95;
+}
+.topsbar .topBtns .left, .topsbarLow .topBtns .left {
+  text-align: right;
+  margin-right: 30px;
+}
+.topsbar .topBtns .right, .topsbarLow .topBtns .right {
+  text-align: left;
+  margin-left: 30px;
+}
+.topsbar .topBtns .backg, .topsbarLow .topBtns .backg {
   display: flex;
   color: white;
   font-size: 15px;
   font-family: "Unica One", cursive;
   margin-left: 15px;
 }
-.topsbar .minilogo, .topsbarLow .minilogo {
+.topsbar .topBtns .minilogo, .topsbarLow .topBtns .minilogo {
   display: flex;
   width: 40px;
   height: 40px;
-  margin: auto;
   opacity: 0.7;
   transition: 0.2s;
 }
-.topsbar .minilogo a, .topsbarLow .minilogo a {
+.topsbar .topBtns .minilogo a, .topsbarLow .topBtns .minilogo a {
   font-size: 50px;
   color: white;
   position: absolute;
 }
-.topsbar .minilogo a:hover, .topsbarLow .minilogo a:hover {
+.topsbar .topBtns .minilogo a:hover, .topsbarLow .topBtns .minilogo a:hover {
   cursor: pointer;
 }
-.topsbar .minilogo:hover, .topsbarLow .minilogo:hover {
+.topsbar .topBtns .minilogo:hover, .topsbarLow .topBtns .minilogo:hover {
   opacity: 0.9;
   transform: scale(1.02, 1.02);
   -webkit-transform: scale(1.02, 1.02);
   -moz-transform: scale(1.02, 1.02);
   -webkit-filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
   filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
+}
+.topsbar:hover .topAct, .topsbarLow:hover .topAct {
+  opacity: 0.6;
 }
 
 .topsbarLow {
@@ -404,10 +503,6 @@ header .albumholder .albumhold .albumName {
 .sizeControll .text, .gHold .searchControll .text {
   width: 75px;
   font-size: 15px;
-  text-shadow: 1px 2px #00dee6e8, 2px 1px #df00d3e1;
-}
-.sizeControll .size, .gHold .searchControll .size {
-  text-shadow: 1px 2px #00dee6e8, 2px 1px #df00d3e1;
 }
 .sizeControll .active, .gHold .searchControll .active {
   background-color: rgba(0, 155, 216, 0.1);
@@ -415,7 +510,6 @@ header .albumholder .albumhold .albumName {
   border-color: rgba(0, 155, 216, 0.5);
   border-width: 0.3px;
   height: 27.5px;
-  text-shadow: 0.5px 1px #00dee6e8, 1px 0.5px #df00d3e1;
 }
 
 .albumslogo {
@@ -518,11 +612,6 @@ header .albumholder .albumhold .albumName {
   background-size: cover;
   margin: 5px 5px 5px 5px;
   transition: 0.8s;
-  /*&:hover {
-      transform:scale(1.02,1.02);
-      -webkit-transform:scale(1.02,1.02);
-      -moz-transform:scale(1.02,1.02);
-  }*/
 }
 @media screen and (max-width: 900px) {
   .gHold .galleryHolder .galleryItem {
@@ -569,7 +658,6 @@ header .albumholder .albumhold .albumName {
 .gHold .galleryHolder .galleryItem .fadeDiv .txtGalHold .txtGal {
   display: flex;
   color: white;
-  /*font-family: 'Noto Serif', serif;*/
   position: absolute;
   text-align: center;
   padding: 5px;
@@ -596,6 +684,9 @@ header .albumholder .albumhold .albumName {
   background-position: center;
   position: absolute;
   z-index: 2;
+}
+.gHold .galleryHolder .hidden {
+  display: none;
 }
 .gHold .galleryHolder .imgCountHold {
   display: flex;
@@ -718,6 +809,7 @@ header .albumholder .albumhold .albumName {
   font-style: italic;
   font-size: 16px;
   text-shadow: none;
+  margin-left: 10px;
 }
 .galleryHolderInner .galleryItemInnerSm {
   margin: 10px 10px 0px 0px;

@@ -17,7 +17,12 @@
 </head>
 <body>
     <div id="topsbar" class="topsbar">
-        <div class="minilogo" onclick="redir('albums/<%= Images[0].split('/')[2] %>')" style="margin-top: -10px;" onclick="javascript:window.location='/'"><a>▽</a></div>    </div>
+        <div class="topBtns">
+            <p class="topAct left" onclick="redir('/albums')">ALBUMS</p>
+            <div class="minilogo" style="margin-top: -10px;" onclick="redir('albums/<%= Images[0].split('/')[2] %>')"><a>▽</a></div>
+            <p class="topAct right" onclick="redir('albums/<%= Images[0].split('/')[2] %>')">GALLERIES</p>
+        </div> 
+    </div>
     <div class="sizeControll">
         <button id="btnPlus" class="size" onclick="changeGallerySize('+'), btnSizeToggle('btnPlus')" style="font-family: Arial, Helvetica, sans-serif;">+</button>
         <button id="btnMinus" class="size active" onclick="changeGallerySize('-'), btnSizeToggle('btnMinus')" style="font-family: Arial, Helvetica, sans-serif;" disabled>-</button>

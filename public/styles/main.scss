@@ -1,6 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+
+@font-face { 
+    font-family: 'RainyHearts';
+    src: url('../fonts/rainyhearts.woff') format('woff');
+}
 
 $small: 450px;
 $medium: 900px;
@@ -11,7 +15,7 @@ body{
     align-items: center;
     justify-items: center;
     /*background-color: black;*/
-    background-image: url("/public/images/backs3.jpg");
+    background-image: url("/public/images/backs2.jpg");
     overflow:auto;
     object-fit: cover;
     background-size: cover;
@@ -39,10 +43,19 @@ $blue-tone: #00dee6e8;
 $pink-tone: #df00d3e1;
 $blue-tone-logo: #00f7ff80;
 $pink-tone-logo: #ff00f281;
+
+%largeTxtEf{
+    text-shadow: 1px 2px $blue-tone, 2px 1px $pink-tone;
+}
+
+%smallTxtEf{
+    text-shadow: 0.5px 1px $blue-tone, 1px 0.5px $pink-tone;
+}
+
 h2,h3,p,a{
     color: white;
     font-family: 'Chakra Petch', sans-serif;
-    text-shadow: 1px 2px $blue-tone, 2px 1px $pink-tone;
+    @extend %largeTxtEf;
     cursor: default;
 }
 
@@ -210,6 +223,61 @@ header{
             }
         }
     }
+}
+
+.albumContainer{
+    display: flex;
+    flex-direction: column;
+    .searchControllA{
+        width: 355px;
+        height: 37.5px;
+        margin-top: 85px;
+        margin-left: 25px;
+        align-self: flex-start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0px;
+        background-color: black;
+        align-self: flex-end;
+        width: auto;
+        padding: 0px 5px 0px 5px;
+        transition: 0.5s;
+        @media screen and (max-width: $medium) {
+            margin-left: 5px;
+        }
+
+        &:hover{
+            input{
+                max-width: 300px;
+                @media screen and (max-width: $small) {
+                    max-width: 125px;
+                }
+            }
+        }
+
+        img{
+            margin-right: 5px;
+        }
+
+        input{
+            max-width: 0px;
+            height: 35px;
+            background-color: black;
+            color: white;
+            border-style: none;
+            font-size: 18px;
+            transition: 0.5s;
+
+            &:focus{
+                outline: none;
+                max-width: 300px;
+                @media screen and (max-width: $small) {
+                    max-width: 125px;
+                }
+            }
+        }
+    }
 
     .albumholder{
         height: auto;
@@ -225,7 +293,7 @@ header{
         flex-direction: row;
         justify-content: flex-start;
         flex-wrap: wrap;
-        margin-top: 125px;
+        margin-top: 0px;
         padding: 5px 5px 5px 5px;
         @media screen and (max-width: 1920px) {
             width: 1230px;
@@ -259,17 +327,19 @@ header{
                 .albumName{
                     opacity: 0.2;
                 }
-                .test{
+                .fade{
                     opacity: 0.1;
                 }
             }
-            .test{
+            .fade{
                 width: 400px;
                 height: 400px;
                 transition: 0.9s;
                 background-image: linear-gradient(to top, rgb(0, 0, 0),rgba(0, 0, 0, 0));
                 display: flex;
                 justify-content: right;
+                position: absolute;
+                z-index: 2;
 
                 @media screen and (max-width: $medium) {
                     width: 300px;
@@ -288,6 +358,7 @@ header{
                 background-color: rgba(0, 0, 0, 0.6);
                 opacity: 0.9;
                 margin: 0px 0px 360px 340px;
+                z-index: 1;
 
                 @media screen and (max-width: $medium) {
                     margin: 0px 0px 260px 240px;
@@ -320,7 +391,12 @@ header{
                 @media screen and (max-width: $medium) {
                     font-size: 25px;
                 }
+                z-index: 3;
             }
+        }
+
+        .hidden{
+            display: none;
         }
     }
 }
@@ -343,48 +419,81 @@ header{
 .topsbar{
     position: fixed;
     display: flex;
+    align-self: center;
+    justify-content: center;
     width: 100%;
     height: 50px;
     background-color: rgba(0, 0, 0, 1);
     z-index: 1000;
     transition: 0.5s;
 
-    .backg{
+    .topBtns{
         display: flex;
-        color: rgb(255, 255, 255);
-        font-size: 15px;
-        font-family: 'Unica One', cursive;
-        margin-left: 15px;
-    }
+        align-self: center;
+        justify-content: center;
 
-    .minilogo{
-        display: flex;
-        width: 40px;
-        height: 40px;
-        //background-image: url("/public/images/minilogo.png");
-        //background-size: cover;
-        margin: auto;
-        opacity: 0.7;
-        transition: 0.2s;
+        .topAct{
+            @extend %smallTxtEf;
+            width: 75px;
+            min-width: 75px;
+            opacity: 0;
+            transition: 0.3s;
 
-        a{
-            font-size: 50px;
-            color: white;
-            position: absolute;
-            
             &:hover{
                 cursor: pointer;
+                opacity: 0.95;
             }
         }
 
-        &:hover{
-            opacity: 0.9;
-            transform:scale(1.02,1.02);
-            -webkit-transform:scale(1.02,1.02);
-            -moz-transform:scale(1.02,1.02);  
+        .left{
+            text-align: right;
+            margin-right: 30px;
+        }
 
-            -webkit-filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
-            filter: drop-shadow(0px 0px 10px rgb(255, 255, 255, 0.3));
+        .right{
+            text-align: left;
+            margin-left: 30px;
+        }
+    
+        .backg{
+            display: flex;
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            font-family: 'Unica One', cursive;
+            margin-left: 15px;
+        }
+    
+        .minilogo{
+            display: flex;
+            width: 40px;
+            height: 40px;
+            opacity: 0.7;
+            transition: 0.2s;
+    
+            a{
+                font-size: 50px;
+                color: white;
+                position: absolute;
+                
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+    
+            &:hover{
+                opacity: 0.9;
+                transform:scale(1.02,1.02);
+                -webkit-transform:scale(1.02,1.02);
+                -moz-transform:scale(1.02,1.02);  
+    
+                -webkit-filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
+                filter: drop-shadow(0px 0px 10px rgb(255, 255, 255, 0.3));
+            }
+        }
+    }
+    &:hover{
+        .topAct{
+            opacity: 0.6;
         }
     }
 }
@@ -433,11 +542,11 @@ header{
     .text{
         width: 75px;
         font-size: 15px;
-        text-shadow: 1px 2px $blue-tone, 2px 1px $pink-tone;
+        @extend %largeTxtEf;
     }
 
     .size{
-        text-shadow: 1px 2px $blue-tone, 2px 1px $pink-tone;
+        @extend %largeTxtEf;
     }
 
     .active{
@@ -446,7 +555,7 @@ header{
         border-color: rgba(0, 155, 216, 0.5);
         border-width: 0.3px;
         height: 27.5px;
-        text-shadow: 0.5px 1px $blue-tone, 1px 0.5px $pink-tone;
+        @extend %smallTxtEf;
     }
 }
 
@@ -550,12 +659,6 @@ header{
                 width: 300px;
             }
     
-            /*&:hover {
-                transform:scale(1.02,1.02);
-                -webkit-transform:scale(1.02,1.02);
-                -moz-transform:scale(1.02,1.02);
-            }*/
-    
             .fadeDiv{
                 height: 600px;
                 width: 400px;
@@ -598,7 +701,6 @@ header{
                     .txtGal{
                         display: flex;
                         color: white;
-                        /*font-family: 'Noto Serif', serif;*/
                         position: absolute;
                         text-align: center;
                         padding: 5px;
@@ -626,6 +728,10 @@ header{
                 position: absolute;
                 z-index: 2;
             }
+        }
+
+        .hidden{
+            display: none;
         }
 
         .imgCountHold{
@@ -756,6 +862,7 @@ header{
             font-style: italic;
             font-size: 16px;
             text-shadow: none;
+            margin-left: 10px;
         }
         
     }
