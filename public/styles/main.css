@@ -810,6 +810,7 @@ header .iohold p:hover {
   font-size: 16px;
   text-shadow: none;
   margin-left: 10px;
+  overflow: hidden;
 }
 .galleryHolderInner .galleryItemInnerSm {
   margin: 10px 10px 0px 0px;

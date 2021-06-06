@@ -34,7 +34,7 @@
         <p class="albumslogo"><%= Gal %></p>
         <% Images.forEach(item => { %>
             <% let ext = item.substr(-4).toLowerCase() %>
-            <% if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg' || ext=='jfif') { %>
+            <% if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg' || ext=='jfif' || ext=='webp') { %>
                 <div id="<%= item %>" class="galleryItemInner galleryItem">
                     <!-- <img class="gallerieImage" src="/<%= item %>"> -->
                     <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage gImage" src="/<%= item %>"></a>
@@ -42,6 +42,11 @@
             <% }else if(ext==='.mp4' || ext==='.webm') { %>
                 <div id="<%= item %>" class="galleryItemInner galleryItem">
                     <a data-fancybox="gallery" href="<%= item %>"><img class="gallerieImage gImage" src="/public/images/Video-placeholder.jpg"></a>
+                </div>
+            <% }else if(ext==='.mov' || ext==='.wmv'  || ext==='.avi' || ext==='.mkv' || ext==='.txt' || ext=='.pdf'  || ext=='tiff'  || ext==='.bpm' || ext==='.ini' || ext==='html' || ext=='.bat' || ext=='.psd'  || ext=='.psd' || ext=='.exe'){ %>
+                <div id="<%= item %>" class="galleryItemInner galleryItem" style="justify-content: center; align-items: center;">
+                    <img class="gallerieImage gImage" src="/public/images/File-placeholder.jpg">
+                    <p class="folderTxt"><%= item.split('/')[4] %> </p>
                 </div>
             <% }else{ %>
                 <div id="<%= item %>" class="galleryItemInner galleryItem" style="justify-content: center; align-items: center;">
