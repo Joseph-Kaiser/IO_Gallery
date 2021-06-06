@@ -121,7 +121,7 @@ async function getThumbs(filess, path){
             if (err) {
                 thumbs.push(null)
             } else {
-                thumbs.push((directoryPath+"/"+files[randomRange(0,5)]).toString());
+                thumbs.push((directoryPath+"/"+files[randomRange(0,files.lenght)]).toString());
             }
         })
     })
