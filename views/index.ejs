@@ -12,6 +12,33 @@
 </head>
 <body>
     <header class="header" style="width: 100%; height: 100vh;">
+        <div class="howToHolder">
+            <button>i</button>
+            <p class="head">How to Use</p>
+            <div class="txtHold">
+            <p> 1 • Navigate to the /Public folder of this project;</p>
+            <p> 2 • Create a new folder with the name Albums</p>
+            <p> 3 • Inside Albums, create albums folders with any name</p>
+            <p> 4 • Add galleries folders to the respective albums folders</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p>     The filesystem should look like this:</p>
+            <br>
+            <br>
+            <p>   ROOT                       ALBUMS                                GALERIES</p>
+            <br>
+            <br>
+            <p>                                                               ┌──── Landscape</p>
+            <p>                   ┌──── Digital-Art/ ──┼──── Portraits</p>
+            <p>   Albums/ -┤                                         └──── Nature</p>
+            <p>                   │</p>
+            <p>                   └──── Photography/ ─┬───── Vecations 2015</p>
+            <p>                                                                 └───── My Dog</p>
+            </div>
+        </div>
         <div class="logoholder">
             <div class="logo1"></div>
             <div class="logo2"></div>
@@ -32,6 +59,7 @@
             window.location='/albums'
         }
     </script>
+    <div class="foot"><p>Copyright © 2021 Joseph-Kaiser</p></div>
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>

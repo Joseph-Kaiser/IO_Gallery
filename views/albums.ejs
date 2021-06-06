@@ -11,8 +11,8 @@
     <title>Albums</title>
 </head>
 <body>
-    <div class="topsbar">
-        <div class="minilogo" onclick="redirBack()" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
+    <div id="topsbar" class="topsbar">
+        <div class="minilogo" onclick="redir('/')" style="margin-top: -10px;" onclick="javascript:window.location='/'"><a>▽</a></div>
     </div>
     <header style="height: 80vh;">
         <div class="albumholder">
@@ -30,15 +30,6 @@
             <div style="height:500px; width: 100%;"></div>
         </div>
     </header>
-    <script>
-        function redir(page)
-        {
-            window.location=page
-        }
-        function redirBack()
-        {
-            window.history.go(-1);
-        }
-    </script>
+    <script src="../public/javascripts/uiHandlers.js"></script>
 </body>
 </html>

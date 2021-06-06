@@ -8,33 +8,39 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/public/images/favico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favico/favicon-16x16.png">
     <link rel="manifest" href="/public/images/favico/site.webmanifest">
+    <script defer src="../public/javascripts/utils.js"></script>
     <title>Álbuns</title>
 </head>
 <body>
-    <div class="topsbar">
-        <div class="minilogo" onclick="redirBack()" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
-    </div>
-    <div class="galleryHolder">
-        <p class="albumslogo"><%= Album %></p>
-        <% Thumbs.forEach(item => { %>
-            <div class="galleryItem">
-                <div class="fadeDiv">
-                    <div class="txtGalHold" onclick="javascript:window.location='/albums/<%= item.split('/')[2] +'/'+ item.split('/')[3] %>'">
-                        <p class="txtGal"><%= item.split('/')[3] %></p>
+    <div id="topsbar" class="topsbar">
+        <div class="minilogo" onclick="redir('/albums')" style="margin-top: -10px;" onclick="javascript:window.location='/'"><a>▽</a></div>    </div>
+    <div class="gHold">
+        <div class="searchControll">
+            <input autocomplete="off" id="searchQ" type="text" placeholder="Search" onchange="searchGalerie()">
+            <img width="17" heihgt="17" src="../public/images/search.png" alt="">
+        </div>
+        <div class="galleryHolder">
+            <p class="albumslogo"><%= Album %></p>
+            <% GalData.Thumbs.forEach((item, index) => { %>
+                <div class="galleryItem" id="<%= item.split('/')[3] %>">
+                    <div class="imgCountHold">
+                        <img src="../public/images/pictures.png" alt="">
+                        <p class="imgCount"><%= GalData.Count[index] %></p>
                     </div>
-                </div>
-                <img class="gallerieThumb" src="/<%= item %>">
+                    <div class="fadeDiv">
+                        <div class="txtGalHold" onclick="javascript:window.location='/albums/<%= item.split('/')[2] +'/'+ item.split('/')[3] %>'">
+                            <p class="txtGal"><%= item.split('/')[3] %></p>
+                        </div>
+                    </div>
+                    <img class="gallerieThumb" src="/<%= item %>">
 
-                
-            </div>
-        <% }); %>
-        <div style="height:500px; width: 100%;"></div>
+                    
+                </div>
+            <% }); %>
+            <div style="height:500px; width: 100%;"></div>
+        </div>
     </div>
-    <script>
-        function redirBack()
-        {
-            window.history.go(-1);
-        }
-    </script>
+    <div class="foot"><p>Copyright © 2021 Joseph-Kaiser</p></div>
+    <script src="../public/javascripts/uiHandlers.js"></script>
 </body>
 </html>

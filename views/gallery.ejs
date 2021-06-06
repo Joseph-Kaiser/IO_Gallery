@@ -12,35 +12,42 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/public/images/favico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favico/favicon-16x16.png">
     <link rel="manifest" href="/public/images/favico/site.webmanifest">
+    <script defer src="../public/javascripts/utils.js"></script>
     <title><%= Gal %></title>
 </head>
 <body>
-    <div class="topsbar">
-        <div class="minilogo" onclick="redir()" style="margin-top: 4px;" onclick="javascript:window.location='/'"></div>
+    <div id="topsbar" class="topsbar">
+        <div class="minilogo" onclick="redir('albums/<%= Images[0].split('/')[2] %>')" style="margin-top: -10px;" onclick="javascript:window.location='/'"><a>▽</a></div>    </div>
+    <div class="sizeControll">
+        <button id="btnPlus" class="size" onclick="changeGallerySize('+'), btnSizeToggle('btnPlus')" style="font-family: Arial, Helvetica, sans-serif;">+</button>
+        <button id="btnMinus" class="size active" onclick="changeGallerySize('-'), btnSizeToggle('btnMinus')" style="font-family: Arial, Helvetica, sans-serif;" disabled>-</button>
+        <button id="btnVid" class="text active" onclick="searchGallery('video'), btnToggle('btnVid')"style="margin-left: 35px; font-family: Arial, Helvetica, sans-serif;">VIDEOS</button>
+        <button id="btnImg" class="text active" style="margin-left: 5px;"onclick="searchGallery('image'), btnToggle('btnImg')" >IMAGES</button>
+        <button id="btnOther" class="text active" style="margin-left: 5px;"onclick="searchGallery('other'), btnToggle('btnOther')">FOLDERS</button>
     </div>
     <div class="galleryHolderInner">
         <p class="albumslogo"><%= Gal %></p>
         <% Images.forEach(item => { %>
-            <% let ext = item.substr(-3) %>
-            <% if(ext==='jpg' || ext==='JPG' || ext==='gif' || ext==='GIF' || ext==='png' || ext==='PNG' || ext==='peg' || ext==='PEG') { %>
-                <div class="galleryItemInner">
+            <% let ext = item.substr(-4).toLowerCase() %>
+            <% if(ext==='.jpg' || ext==='.gif' || ext==='.png' || ext==='jpeg') { %>
+                <div id="<%= item %>" class="galleryItemInner galleryItem">
                     <!-- <img class="gallerieImage" src="/<%= item %>"> -->
-                    <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage" src="/<%= item %>"></a>
+                    <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage gImage" src="/<%= item %>"></a>
                 </div>
-            <% } %>
-            <% if(ext==='mp4' || ext==='MP4' || ext==='avi' || ext==='AVI' ) { %>
-                <div class="galleryItemInner">
-                    <a data-fancybox="gallery" href="/<%= item %>"><img class="gallerieImage" src="/public/images/Video-placeholder.jpg"></a>
+            <% }else if(ext==='.mp4' || ext==='.webm') { %>
+                <div id="<%= item %>" class="galleryItemInner galleryItem">
+                    <a data-fancybox="gallery" href="<%= item %>"><img class="gallerieImage gImage" src="/public/images/Video-placeholder.jpg"></a>
+                </div>
+            <% }else{ %>
+                <div id="<%= item %>" class="galleryItemInner galleryItem" style="justify-content: center; align-items: center;">
+                    <img class="gallerieImage gImage" onclick="redir('albums/<%= item.split('/')[2] %>/<%= item.split('/')[3] %>/<%= item.split('/')[4] %>')" src="/public/images/Folder-placeholder.jpg">
+                    <p class="folderTxt" onclick="redir('albums/<%= item.split('/')[2] %>/<%= item.split('/')[3] %>/<%= item.split('/')[4] %>')" ><%= item.split('/')[4] %> </p>
                 </div>
             <% } %>
         <% }); %>
     </div>
-    <script>
-        function redir()
-        {
-            window.history.go(-1);
-        }
-    </script>
+    <div class="foot"><p>Copyright © 2021 Joseph-Kaiser</p></div>
+    <script src="../public/javascripts/uiHandlers.js"></script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
