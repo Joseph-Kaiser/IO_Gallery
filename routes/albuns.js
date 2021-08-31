@@ -129,7 +129,11 @@ async function getPreThumb(albums){ //Escolhe uma thumbnail aleatória dentre as
             if (err) {
                 thumbs.push(null)
             } else {
-                thumbs.push((directoryPath+"/"+files[randomRange(0,5)]).toString());
+                if(files.length <= 5){
+                    thumbs.push((directoryPath+"/"+files[0]).toString());
+                }else{
+                    thumbs.push((directoryPath+"/"+files[randomRange(0,5)]).toString());
+                }
             }
         })
         gall[index] = galleries.length
