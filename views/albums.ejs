@@ -9,14 +9,20 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favico/favicon-16x16.png">
     <link rel="manifest" href="/public/images/favico/site.webmanifest">
     <script defer src="../public/javascripts/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
     <title>Albums</title>
 </head>
 <body>
     <div id="topsbar" class="topsbar">
+        <div class="logDecoy"></div>
         <div class="topBtns">
             <p class="topAct left" onclick="redir('/')">FRONT</p>
             <div class="minilogo" onclick="redir('/')" style="margin-top: -10px;" onclick="javascript:window.location='/'"><a>▽</a></div>
             <p class="topAct right" style="opacity: 0 !important;" disabled>ALBUMS</p>
+        </div>
+        <div class="logoutBtn">
+            <p class="topLogout" method="post" onclick="redir('/auth/logout')">LOGOUT</p> 
         </div>
     </div>
     <div class="albumContainer">
@@ -27,7 +33,7 @@
         <div class="albumholder">
             <p class="albumslogo">  ALBUMS  </p>
             <% AlbumTh.Thumbs.forEach((item,index) => { %>
-                <div class="albumhold" id="<%= item.split('/')[2] %>" onclick="redir('albums/<%= item.split('/')[2] %>')" style="background-image: url('<%= item %>');">
+                <div class="lazy albumhold" id="<%= item.split('/')[2] %>" onclick="redir('albums/<%= item.split('/')[2] %>')" style="background-image: url('<%= item %>');">
                     <div class="fade"></div>
                     <div class="countHold">
                         <img src="../public/images/gallery.png" alt="">
@@ -38,7 +44,8 @@
             <% }); %>
             <div style="height:500px; width: 100%;"></div>
         </div>
-    </header>
+    </div>
+    <div class="foot"><p>Copyright © 2021 <a href="https://github.com/Joseph-Kaiser/IO_Gallery">Joseph-Kaiser</a></p></div>
     <script src="../public/javascripts/uiHandlers.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ body{
     align-items: center;
     justify-items: center;
     /*background-color: black;*/
-    background-image: url("/public/images/backs3.jpg");
+    background-image: url("/public/images/backs01.jpg");
     overflow:auto;
     object-fit: cover;
     background-size: cover;
@@ -52,7 +52,7 @@ $pink-tone-logo: #ff00f281;
     text-shadow: 0.5px 1px $blue-tone, 1px 0.5px $pink-tone;
 }
 
-h2,h3,p,a{
+h2,h3,p,a,button{
     color: white;
     font-family: 'Chakra Petch', sans-serif;
     @extend %largeTxtEf;
@@ -63,6 +63,40 @@ input{
     font-family: 'Chakra Petch', sans-serif;
 }
 
+.swal-modal {
+    background-color: rgb(0, 0, 0);
+    border: 0.5px solid $blue-tone;
+    border-radius: 0px;
+    color: white;
+    transition: 0.5s;
+
+    &:hover{
+        border: 0.5px solid $pink-tone;
+    }
+}
+
+.swal-text{
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 22px;
+    color: white;
+    @extend %smallTxtEf;
+}
+
+.swal-title{
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 30px;
+    color: white;
+    @extend %largeTxtEf;
+}
+
+
+.swal-button {
+    height: 40px;
+    width: auto;
+    background-color: black;
+    border-color: $pink-tone;
+}
+
 header{
     height: 100vh;
 
@@ -70,6 +104,15 @@ header{
         filter: 
         drop-shadow(1px 2px 0px $blue-tone-logo) 
         drop-shadow(2px 1px 0px $pink-tone-logo)
+    }
+
+    %drop-shadow-style-box{
+        border-style: none;
+        filter: 
+        drop-shadow(-2px 0px 0px $blue-tone-logo) 
+        drop-shadow(4px 0px 0px $pink-tone-logo)
+        drop-shadow(1px 1px 2px #ffffff38)
+        drop-shadow(-1px -1px 2px #ffffff38)
     }
 
     .howToHolder{
@@ -96,7 +139,10 @@ header{
             align-self: center;
             margin: 60px;
             @media screen and (max-width: $medium) {
-                font-size: 25px;
+                font-size: 22px;
+            }
+            @media screen and (max-width: $small) {
+                font-size: 16px;
             }
         }
 
@@ -105,7 +151,11 @@ header{
             max-height: 800px;
             background-color: rgba(0, 0, 0, 0.7);
             @media screen and (max-width: $medium) {
-                max-width: 380px;
+                max-width: 480px;
+                max-height: 800px;
+            }
+            @media screen and (max-width: $small) {
+                max-width: 320px;
                 max-height: 700px;
             }
         }
@@ -117,7 +167,10 @@ header{
                 color: rgb(192, 192, 192);
                 margin: 0px;
                 @media screen and (max-width: $medium) {
-                    font-size: 12px;
+                    font-size: 16px;
+                }
+                @media screen and (max-width: $small) {
+                    font-size: 10px;
                 }
             }
         }
@@ -220,6 +273,149 @@ header{
 
             &:hover{
                 cursor: default;
+            }
+        }
+    }
+
+    .loginHold{
+        display: flex;
+        width: auto;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        .loginContent{
+            margin-top:50px;
+            display: flex;
+            width: 60%;
+            height: 60%;
+            background-color: rgba($color: #000000, $alpha: 1.0);
+            flex-direction: row;
+            @media screen and (max-width: $medium) {
+                width: 85%;
+                height: 60%;
+            }
+            @media screen and (max-width: $small) {
+                width: 95%;
+                height: 60%;
+            }
+
+            .loginItems{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 65%;
+                height: auto;
+                z-index: 1;
+                @media screen and (max-width: $medium) {
+                    width: 80%;
+                }
+                @media screen and (max-width: $small) {
+                    width: 85%;
+                }
+
+                .loginForm{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    margin-top: 10%;
+                    width: 80%;
+                    height: 80%;
+                    -webkit-box-shadow: inset -2px 0px 0px 0px $blue-tone, inset 2px 0px 0px 0px $pink-tone, inset 2px 0px 0px 0px $pink-tone; 
+                    box-shadow: inset -2px 0px 0px 0px $blue-tone, inset 2px 0px 0px 0px $pink-tone, inset 2px 0px 0px 0px $pink-tone;
+                    @media screen and (max-width: $medium) {
+                        width: 90%;
+                    }
+                    @media screen and (max-width: $small) {
+                        width: 95%;
+                    }
+
+                    input{
+                        width: 45%;
+                        height: 35px;
+                        color: white;
+                        margin-bottom: 25px;
+                        background-color: black;
+                        text-align: center;
+                        @extend %smallTxtEf;
+                        @extend %drop-shadow-style-box;
+                        transition: 0.3s ease-in-out;
+                        
+                        &::placeholder{
+                            opacity: 0;
+                            
+                        }
+
+                        &:focus{
+                            outline: none;
+                            width: 60%;
+                        }
+
+                        &:hover{
+                            width: 65%;
+
+                            &::placeholder{
+                                opacity: 0.5;
+                            }
+                        }
+                    }
+    
+                    button{
+                        height: 40px;
+                        width: 25%;
+                        color: rgba(255, 255, 255, 0.6);
+                        font-size: 18px;
+                        background-color: black;
+                        @extend %smallTxtEf;
+                        @extend %drop-shadow-style-box;
+                        transition: 0.3s ease-in-out;
+                        @media screen and (max-width: $medium) {
+                            font-size: 14px
+                        }
+
+                        &:hover{
+                            width: 30%;
+                            color: rgba(255, 255, 255, 0.9);
+                        }
+                    }
+                }
+                .passManager{
+                    
+                    a{
+                        text-decoration: none;
+                        cursor: pointer;
+                        opacity: 0.4;
+                        transition: 0.8s;
+                        @media screen and (max-width: $medium) {
+                            font-size: 14px
+                        }
+
+                        &:hover{
+                            opacity: 0.9;
+                        }
+                    }
+                }
+
+                &:hover{
+                    box-shadow: 0 0 15px rgba(0,0,0,0.75);
+                    clip-path: inset(0px -15px 0px 0px); //Directional shadow, -15 trim x coord
+                }
+            }
+
+            img{
+                width: 35%;
+                height: auto;
+                object-fit: cover !important; 
+                object-position: center;
+                z-index: 0;
+                @media screen and (max-width: $medium) {
+                    width: 20%;
+                }
+                @media screen and (max-width: $small) {
+                    width: 15%;
+                }
             }
         }
     }
@@ -413,6 +609,32 @@ header{
         color: rgb(63, 63, 63);
         text-shadow: none;
         margin: auto;
+        transition: 0.8s;
+    }
+
+    a{
+        color: rgb(63, 63, 63);
+        text-shadow: none;
+        margin: auto;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.8s;
+
+        &:hover{
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            text-shadow: 0px 0px 3px white;
+        }
+    }
+
+    &:hover{
+
+        p{
+            color: rgb(99, 99, 99);
+        }
+        a{
+            color: rgb(190, 190, 190);
+        }
     }
 }
 
@@ -420,12 +642,17 @@ header{
     position: fixed;
     display: flex;
     align-self: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     height: 50px;
     background-color: rgba(0, 0, 0, 1);
     z-index: 1000;
     transition: 0.5s;
+
+    .logDecoy{
+        width: 60px;
+        margin-left: 15px;
+    }
 
     .topBtns{
         display: flex;
@@ -491,9 +718,27 @@ header{
             }
         }
     }
+    .topLogout{
+        display: flex;
+        margin-right: 15px;
+        color: rgba($color: #b10000, $alpha: 1.0);
+        text-shadow: 1px 2px #a80000, 2px 1px #440000;
+        text-shadow: 0.5px 1px #440000, 1px 0.5px #a80000;
+        opacity: 0.7;
+        transition: 0.5s;
+
+        &:hover{
+            opacity: 1.0;
+            cursor: pointer;
+            color: rgba($color: #ff2626, $alpha: 1.0);
+        }
+    }
     &:hover{
         .topAct{
-            opacity: 0.6;
+            opacity: 0.7;
+        }
+        .topLogout{
+            opacity: 0.8;
         }
     }
 }

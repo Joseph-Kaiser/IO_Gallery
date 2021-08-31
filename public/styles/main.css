@@ -10,7 +10,7 @@ body {
   align-items: center;
   justify-items: center;
   /*background-color: black;*/
-  background-image: url("/public/images/backs3.jpg");
+  background-image: url("/public/images/backs01.jpg");
   overflow: auto;
   object-fit: cover;
   background-size: cover;
@@ -34,15 +34,15 @@ body {
   border: 3px solid #292929;
 }
 
-.sizeControll .size, .gHold .searchControll .size, .sizeControll .text, .gHold .searchControll .text, h2, h3, p, a {
+.sizeControll .size, .gHold .searchControll .size, .sizeControll .text, .gHold .searchControll .text, .swal-title, h2, h3, p, a, button {
   text-shadow: 1px 2px #00dee6e8, 2px 1px #df00d3e1;
 }
 
-.sizeControll .active, .gHold .searchControll .active, .topsbar .topBtns .topAct, .topsbarLow .topBtns .topAct {
+.sizeControll .active, .gHold .searchControll .active, .topsbar .topBtns .topAct, .topsbarLow .topBtns .topAct, header .loginHold .loginContent .loginItems .loginForm button, header .loginHold .loginContent .loginItems .loginForm input, .swal-text {
   text-shadow: 0.5px 1px #00dee6e8, 1px 0.5px #df00d3e1;
 }
 
-h2, h3, p, a {
+h2, h3, p, a, button {
   color: white;
   font-family: "Chakra Petch", sans-serif;
   cursor: default;
@@ -52,11 +52,45 @@ input {
   font-family: "Chakra Petch", sans-serif;
 }
 
+.swal-modal {
+  background-color: black;
+  border: 0.5px solid #00dee6e8;
+  border-radius: 0px;
+  color: white;
+  transition: 0.5s;
+}
+.swal-modal:hover {
+  border: 0.5px solid #df00d3e1;
+}
+
+.swal-text {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 22px;
+  color: white;
+}
+
+.swal-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 30px;
+  color: white;
+}
+
+.swal-button {
+  height: 40px;
+  width: auto;
+  background-color: black;
+  border-color: #df00d3e1;
+}
+
 header {
   height: 100vh;
 }
 header .logoholder .logo1, header .logoholder .logo7, header .logoholder .logo6, header .logoholder .logo5, header .logoholder .logo4, header .logoholder .logo3, header .logoholder .logo2 {
   filter: drop-shadow(1px 2px 0px #00f7ff80) drop-shadow(2px 1px 0px #ff00f281);
+}
+header .loginHold .loginContent .loginItems .loginForm button, header .loginHold .loginContent .loginItems .loginForm input {
+  border-style: none;
+  filter: drop-shadow(-2px 0px 0px #00f7ff80) drop-shadow(4px 0px 0px #ff00f281) drop-shadow(1px 1px 2px #ffffff38) drop-shadow(-1px -1px 2px #ffffff38);
 }
 header .howToHolder {
   display: flex;
@@ -84,7 +118,12 @@ header .howToHolder .head {
 }
 @media screen and (max-width: 900px) {
   header .howToHolder .head {
-    font-size: 25px;
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .howToHolder .head {
+    font-size: 16px;
   }
 }
 header .howToHolder:hover {
@@ -94,7 +133,13 @@ header .howToHolder:hover {
 }
 @media screen and (max-width: 900px) {
   header .howToHolder:hover {
-    max-width: 380px;
+    max-width: 480px;
+    max-height: 800px;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .howToHolder:hover {
+    max-width: 320px;
     max-height: 700px;
   }
 }
@@ -109,7 +154,12 @@ header .howToHolder .txtHold p {
 }
 @media screen and (max-width: 900px) {
   header .howToHolder .txtHold p {
-    font-size: 12px;
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .howToHolder .txtHold p {
+    font-size: 10px;
   }
 }
 header .howToHolder button {
@@ -202,6 +252,147 @@ header .iohold p {
 }
 header .iohold p:hover {
   cursor: default;
+}
+header .loginHold {
+  display: flex;
+  width: auto;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+header .loginHold .loginContent {
+  margin-top: 50px;
+  display: flex;
+  width: 60%;
+  height: 60%;
+  background-color: black;
+  flex-direction: row;
+}
+@media screen and (max-width: 900px) {
+  header .loginHold .loginContent {
+    width: 85%;
+    height: 60%;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .loginHold .loginContent {
+    width: 95%;
+    height: 60%;
+  }
+}
+header .loginHold .loginContent .loginItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 65%;
+  height: auto;
+  z-index: 1;
+}
+@media screen and (max-width: 900px) {
+  header .loginHold .loginContent .loginItems {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .loginHold .loginContent .loginItems {
+    width: 85%;
+  }
+}
+header .loginHold .loginContent .loginItems .loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10%;
+  width: 80%;
+  height: 80%;
+  -webkit-box-shadow: inset -2px 0px 0px 0px #00dee6e8, inset 2px 0px 0px 0px #df00d3e1, inset 2px 0px 0px 0px #df00d3e1;
+  box-shadow: inset -2px 0px 0px 0px #00dee6e8, inset 2px 0px 0px 0px #df00d3e1, inset 2px 0px 0px 0px #df00d3e1;
+}
+@media screen and (max-width: 900px) {
+  header .loginHold .loginContent .loginItems .loginForm {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .loginHold .loginContent .loginItems .loginForm {
+    width: 95%;
+  }
+}
+header .loginHold .loginContent .loginItems .loginForm input {
+  width: 45%;
+  height: 35px;
+  color: white;
+  margin-bottom: 25px;
+  background-color: black;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+header .loginHold .loginContent .loginItems .loginForm input::placeholder {
+  opacity: 0;
+}
+header .loginHold .loginContent .loginItems .loginForm input:focus {
+  outline: none;
+  width: 60%;
+}
+header .loginHold .loginContent .loginItems .loginForm input:hover {
+  width: 65%;
+}
+header .loginHold .loginContent .loginItems .loginForm input:hover::placeholder {
+  opacity: 0.5;
+}
+header .loginHold .loginContent .loginItems .loginForm button {
+  height: 40px;
+  width: 25%;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+  background-color: black;
+  transition: 0.3s ease-in-out;
+}
+@media screen and (max-width: 900px) {
+  header .loginHold .loginContent .loginItems .loginForm button {
+    font-size: 14px;
+  }
+}
+header .loginHold .loginContent .loginItems .loginForm button:hover {
+  width: 30%;
+  color: rgba(255, 255, 255, 0.9);
+}
+header .loginHold .loginContent .loginItems .passManager a {
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: 0.8s;
+}
+@media screen and (max-width: 900px) {
+  header .loginHold .loginContent .loginItems .passManager a {
+    font-size: 14px;
+  }
+}
+header .loginHold .loginContent .loginItems .passManager a:hover {
+  opacity: 0.9;
+}
+header .loginHold .loginContent .loginItems:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
+  clip-path: inset(0px -15px 0px 0px);
+}
+header .loginHold .loginContent img {
+  width: 35%;
+  height: auto;
+  object-fit: cover !important;
+  object-position: center;
+  z-index: 0;
+}
+@media screen and (max-width: 900px) {
+  header .loginHold .loginContent img {
+    width: 20%;
+  }
+}
+@media screen and (max-width: 450px) {
+  header .loginHold .loginContent img {
+    width: 15%;
+  }
 }
 
 .albumContainer {
@@ -391,18 +582,42 @@ header .iohold p:hover {
   color: #3f3f3f;
   text-shadow: none;
   margin: auto;
+  transition: 0.8s;
+}
+.foot a {
+  color: #3f3f3f;
+  text-shadow: none;
+  margin: auto;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.8s;
+}
+.foot a:hover {
+  cursor: pointer;
+  color: white;
+  text-shadow: 0px 0px 3px white;
+}
+.foot:hover p {
+  color: #636363;
+}
+.foot:hover a {
+  color: #bebebe;
 }
 
 .topsbar, .topsbarLow {
   position: fixed;
   display: flex;
   align-self: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 50px;
   background-color: black;
   z-index: 1000;
   transition: 0.5s;
+}
+.topsbar .logDecoy, .topsbarLow .logDecoy {
+  width: 60px;
+  margin-left: 15px;
 }
 .topsbar .topBtns, .topsbarLow .topBtns {
   display: flex;
@@ -457,8 +672,25 @@ header .iohold p:hover {
   -webkit-filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
   filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
 }
+.topsbar .topLogout, .topsbarLow .topLogout {
+  display: flex;
+  margin-right: 15px;
+  color: #b10000;
+  text-shadow: 1px 2px #a80000, 2px 1px #440000;
+  text-shadow: 0.5px 1px #440000, 1px 0.5px #a80000;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+.topsbar .topLogout:hover, .topsbarLow .topLogout:hover {
+  opacity: 1;
+  cursor: pointer;
+  color: #ff2626;
+}
 .topsbar:hover .topAct, .topsbarLow:hover .topAct {
-  opacity: 0.6;
+  opacity: 0.7;
+}
+.topsbar:hover .topLogout, .topsbarLow:hover .topLogout {
+  opacity: 0.8;
 }
 
 .topsbarLow {

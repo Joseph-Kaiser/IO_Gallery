@@ -2,49 +2,82 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const { randomBytes } = require("crypto");
+const { exception } = require("console");
 
 router.get('/', async (req, res) => {
-    let path = "public/Albums/"
-    let albumNm = getDirectories(path)
-    let preThumb = await getPreThumb(albumNm)
-    res.render('albums', {
-        AlbumTh : preThumb
-    })
+    if(localStorage.getItem('Logged') == 'false'){res.redirect('/auth/login')}
+    else{
+        let path = "public/Albums/"
+        let albumNm = getDirectories(path)
+        let preThumbs = await getPreThumb(albumNm)
+        res.render('albums', {
+            AlbumTh : preThumbs
+        })
+    }
 })
 
 router.get('/:albumname', async (req, res) => {
     let album = req.params.albumname
-    let path = `public/Albums/${album}`
-    let nddsa = getDirectories(path)
-    //console.log(nddsa)
-    let galData = await getThumbs(nddsa, path)
-    res.render("galleries", {
-        GalData : galData,
-        Album : album
-    })
+    if(localStorage.getItem('Logged') == 'false'){res.redirect('/auth/login')}
+    else if(album.length <= 0){
+        res.redirect('/')
+        }else{
+            try {
+                let path = `public/Albums/${album}`
+                let galleryList = getDirectories(path)
+                let galData = await getThumbs(galleryList, path)
+                if(galData == null){throw "Filesystem Error"}
+                res.render("galleries", {
+                    GalData : galData,
+                    Album : album
+                })
+            } catch (error) {
+                console.log(error)
+                res.redirect('/albums')
+            }
+    }
 })
 
 router.get('/:albumname/:galName', async (req,res) => {
-    let album = req.params.albumname
-    let gal = req.params.galName
-    let path = `public/Albums/${album}/${gal}`
-    let images = await getImages(path)
-    res.render("gallery", {
-        Gal : gal,
-        Images : images
-    })
+    if(localStorage.getItem('Logged') == 'false'){res.redirect('/auth/login')}
+    else{
+        try {
+            let album = req.params.albumname
+            let gal = req.params.galName
+            let path = `public/Albums/${album}/${gal}`
+            let images = await getImages(path)
+            if(images[0] == null){throw "Folder doesn't exist / Empty"}
+            res.render("gallery", {
+                Gal : gal,
+                Images : images
+            })
+        } catch (error) {
+            console.log(error)
+            res.redirect(`/albums`)
+        }
+        
+    }
 })
 
 router.get('/:albumname/:galName/:subFolder', async (req,res) => {
-    let album = req.params.albumname
-    let gal = req.params.galName
-    let fol = req.params.subFolder
-    let path = `public/Albums/${album}/${gal}/${fol}`
-    let images = await getImages(path)
-    res.render("gallery", {
-        Gal : gal,
-        Images : images
-    })
+    if(localStorage.getItem('Logged') == 'false'){res.redirect('/auth/login')}
+    else{
+        try {
+            let album = req.params.albumname
+            let gal = req.params.galName
+            let fol = req.params.subFolder
+            let path = `public/Albums/${album}/${gal}/${fol}`
+            let images = await getImages(path)
+            if(images[0] == null){throw "Folder doesn't exist / Empty"}
+            res.render("gallery", {
+                Gal : gal,
+                Images : images
+            })
+        } catch (error) {
+            console.log(error)
+            res.redirect(`/albums`)
+        }
+    }
 })
 
 function naturalSort(ary, fullNumbers) {
@@ -83,7 +116,8 @@ function randomRange(min, max) {
     )
 }
 
-async function getPreThumb(albums){
+//                                    Main engine para Albums.ejs
+async function getPreThumb(albums){ //Escolhe uma thumbnail aleatória dentre as Galerias do Album parent
     let thumbs = []
     let gall = []
     await albums.forEach((item,index) => {
@@ -109,28 +143,33 @@ async function getPreThumb(albums){
 }
 
 async function getThumbs(filess, path){
-    let thumbs = []
-    let count = []
-    await filess.forEach((item, index)=> {
-        filePath = path+"/"+item;
-        let directoryPath = filePath
-
-        fs.readdir(directoryPath, function(err, files) {
-            count[index] = files.length
-            files = extractValidThumb(files);
-            if (err) {
-                thumbs.push(null)
-            } else {
-                thumbs.push((directoryPath+"/"+files[0]).toString());
-            }
-        })
-    })
-    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-    thumbs = thumbs.sort()
-    return galData = {
-        'Thumbs' : thumbs,
-        'Count' : count
-    };
+    let galData = []
+    try {
+        await filess.forEach((item, index) => {
+                let directoryPath = `${path}/${item}`;
+                fs.readdir(directoryPath, function(err, files) {
+                    try {
+                        files = extractValidThumb(files);
+                        if(err){
+                            galData.push({Thumb: null, Count: null})
+                        } else {
+                            galData.push({Thumb: `${directoryPath}/${files[randomRange(0,files.length)].toString()}`, Count: files.length.toString()})
+                        }
+                    } catch (error) {
+                        galData.push({Thumb: '../public/images/Folder-placeholder.jpg', Count: 0})
+                    }
+                })
+        });
+        await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+        //Custom pra essa etapa
+        galData.sort(function(a, b) {
+            return ((a.Thumb < b.Thumb) ? -1 : ((a.Thumb == b.Thumb) ? 0 : 1));
+        });
+        return galData;
+    } catch (error) {
+        console.log(error)
+        return null
+    }
 }
 
 async function getImages(path){
